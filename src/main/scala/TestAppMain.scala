@@ -9,8 +9,9 @@ object TestAppMain {
       System.exit(1)
     }
 
-    val spark = SparkSession.builder()
-      .appName("Test Deploy App")
+    val spark = SparkSession
+      .builder()
+      .appName("Vopolski Application")
       .getOrCreate()
 
     val moviesDF = spark.read
@@ -23,6 +24,9 @@ object TestAppMain {
       col("Release_Date").as("Release")
     )
       .where(col("Major_Genre") === "Comedy" and col("IMDB_Rating") > 6.5)
+
+      // shuffle 200
+
       .orderBy(col("Rating").desc_nulls_last)
 
     goodComediesDF.show
