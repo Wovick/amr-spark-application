@@ -29,13 +29,6 @@ object CountryDto {
     )
 }
 
-/**
- * 3) Chimney
- * 4) Delete Name
- * 5) For comprechen
- *
- * */
-
 object CircleApp extends App {
   def using[A, B <: {def close(): Unit}] (closeable: B) (f: B => A): A =
     try { f(closeable) } finally { closeable.close() }

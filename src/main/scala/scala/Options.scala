@@ -42,44 +42,5 @@ object Options {
       else None
   }
 
-  // try to establish a connection, if so - print the connect method
-  val host = config.get("host")
-  val port = config.get("port")
-  /*
-    if (h != null)
-      if (p != null)
-        return Connection.apply(h, p)
-    return null
-   */
-  val connection = host.flatMap(h => port.flatMap(p => Connection.apply(h, p)))
-  /*
-    if (c != null)
-      return c.connect
-    return null
-   */
-  val connectionStatus = connection.map(c => c.connect)
-  // if (connectionStatus == null) println(None) else print (Some(connectionstatus.get))
-  println(connectionStatus)
-  /*
-    if (status != null)
-      println(status)
-   */
-  connectionStatus.foreach(println)
-
-
-  // chained calls
-  config.get("host")
-    .flatMap(host => config.get("port")
-      .flatMap(port => Connection(host, port))
-      .map(connection => connection.connect))
-    .foreach(println)
-
-  // for-comprehensions
-  val forConnectionStatus = for {
-    host <- config.get("host")
-    port <- config.get("port")
-    connection <- Connection(host, port)
-  } yield connection.connect
-  forConnectionStatus.foreach(println)
 
 }
