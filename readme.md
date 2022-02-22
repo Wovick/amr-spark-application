@@ -9,11 +9,12 @@
 
 aws s3 cp s3://lux-big/amr-spark-application.jar .
 
-/usr/bin/spark-submit --class part6practical.TestDeployApp --supervise --verbose amr-spark-application.jar movies.json goodMovies
 
+/usr/bin/spark-submit --class TestAppMain --supervise --verbose s3://spark-luxoft/jar/amr-spark-application.jar s3://spark-luxoft/source/movies.json s3://spark-luxoft/good_movies
 
-/usr/bin/spark-submit --class TestAppMain --supervise --verbose s3a://lux-big/amr-spark-application.jar s3://lux-big/movies.json s3://lux-big/good_movies
+aws s3 ls --human-readable s3://spark-luxoft
 
+aws s3 ls --human-readable s3://spark-luxoft/source/
 
 /usr/bin/spark-submit \
 --master yarn \
