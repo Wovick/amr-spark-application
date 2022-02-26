@@ -39,4 +39,13 @@ object Generics extends App {
   val contrVariantAnimalList: ContrVariantAnimalList[Cat] = new ContrVariantAnimalList[Animal]
 
 
+
+  /**
+   * Exercise: make code valid
+   *
+   * class A[-T]{ def something: T}
+   * val a = new A()
+   * Int b = a.something(Object(1))
+   *
+   * */
 }

@@ -30,6 +30,25 @@ object Recursion extends App {
 
   println(anotherFactorial(5000))
 
-  def factorialWithFoldLeft(): BigInt = ???
+
+  /*
+    1.  Concatenate a string n times
+    2.  IsPrime function tail recursive
+    3.  Fibonacci function, tail recursive.
+   */
+
+//  @tailrec
+  def concatenateTailrec(aString: String, n: Int, accumulator: String): String = ???
+
+  println(concatenateTailrec("hello", 3, "")) // hellohellohello
+
+  def isPrime(n: Int): Boolean = ???
+
+  println(isPrime(2003)) // true
+  println(isPrime(629)) // false
+
+  def fibonacci(n: Int): Int = ???
+
+  println(fibonacci(8)) // 1 1 2 3 5 8 13, 21
 
 }
