@@ -2,7 +2,7 @@ package scala
 
 import scala.util.Random
 
-object Options {
+object Options extends App {
   val myFirstOption: Option[Int] = Some(4)
   val noOption: Option[Int] = None
 
