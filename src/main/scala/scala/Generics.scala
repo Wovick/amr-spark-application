@@ -41,11 +41,20 @@ object Generics extends App {
 
 
   /**
-   * Exercise: make code valid
+   * 1. Exercise: design API invariant, covariant and contravariant versions of methods park, impound, checkVehicles
+   * Parking[T](things: List[T]){
+   *  park(vehicle: T)
+   *  impound(vehicle: List[T])
+   *  checkVehicles(condition: String): List[T]
+   * }
    *
-   * class A[-T]{ def something: T}
-   * val a = new A()
-   * Int b = a.something(Object(1))
-   *
+   * 2. Change API to use InvariantList[T]
    * */
+
+
+  class Vehicle
+  class Bike extends Vehicle
+  class Car extends Vehicle
+
+  class InvariantMyList[T]
 }
