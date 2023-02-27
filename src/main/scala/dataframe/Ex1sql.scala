@@ -3,6 +3,7 @@ package dataframe
 import org.apache.spark.sql.functions.col
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.{SaveMode, SparkSession}
+import org.apache.spark.storage.StorageLevel.DISK_ONLY_2
 
 object Ex1sql extends App {
   val par = 2
@@ -15,7 +16,7 @@ object Ex1sql extends App {
   val stateNames = spark.read
     .option("header", "true")
     .option("inferSchema", "true")
-    .csv("C:\\Users\\Vadim\\IdeaProjects\\kama-spark-scala\\src\\main\\resources\\stateNames\\statenames.csv")
+    .json("src/main/resourses/movies.json")
 
   stateNames.show()
   stateNames.printSchema()
@@ -23,8 +24,11 @@ object Ex1sql extends App {
   stateNames
     .coalesce(1)
     .write
+    .partitionBy("Major_Genre")
     .mode(SaveMode.Overwrite)
-    .parquet("./stateNames")
+    .json("./movies")
+
+
 
 
   // Step - 2: In reality it can be too expensive and CPU-burst
@@ -73,5 +77,7 @@ object Ex1sql extends App {
     .groupBy("Year")
     .sum("Cnt").as("Sum")
     .orderBy("Year")
-    .explain()
+    .persist(DISK_ONLY_2)
+    .cache()
+
 }

@@ -22,8 +22,9 @@ object Ex8_Parse_CSV extends App {
   // get header
   val header: immutable.Seq[String] = headerAndRows.first().toList
 
+  val predicate: List[String] => Boolean = x => x != "Test1"
   // filter out header (eh. just check if the first val matches the first header name)
-  val data = headerAndRows.filter(x => x.head != header.head)
+  val data = headerAndRows.filter(predicate)
 
   // splits to map (header/value pairs)
   val stateNames = data.map(splits => splits.zip(header).map { case (x, y) => y -> x }.toMap)

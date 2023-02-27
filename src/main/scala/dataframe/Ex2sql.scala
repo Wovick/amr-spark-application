@@ -22,6 +22,7 @@ object Ex2sql extends App {
   filteredStateNames.show()
 
   filteredStateNames
+//    .select(array_contains(col("asdasd")))
 //    .orderBy(col("State").desc(), col("Cnt").desc())
     .orderBy(col("State"), col("Cnt"))
     .show()

@@ -45,8 +45,10 @@ object Ex5sql extends App {
     .show(150)
 
   // Step-3: Use the same UDF in SQL expression
-  stateNames
-    .createOrReplaceTempView("stateNames")
+  stateNames.createOrReplaceTempView("stateNames")
+
+//  hive managed
+  stateNames.write.saveAsTable("stateNames")
 
   // Step-4: Get full list of boy names who was born during WWII
   spark.sql("SELECT DISTINCT Name FROM stateNames WHERE Gender = 'M' and isWorldWarTwoYear(Year) ORDER BY Name DESC").show(150)

@@ -35,6 +35,8 @@ object Ex0 extends App {
   val countDFTime: Long = System.currentTimeMillis
   calcTimeDiff(initDFTime, startDataFrameTime, countDFTime)
 
+  Thread.sleep(10000)
+
 
 
 
